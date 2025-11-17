@@ -26,6 +26,28 @@ sudo ip link set can0 up
 sudo ifconfig can0 txqueuelen 100
 ```
 
+
+### can enable
+
+```shell
+sudo modprobe can
+sudo modprobe can_raw
+sudo modprobe can_dev
+sudo modprobe slcan
+
+# 查找设备
+lsusb | grep "CAN"
+# 应该能看到类似 "1d50:606f OpenMoko, Inc." 的设备
+
+# 创建设备节点
+sudo slcand -o -c -s8 /dev/serial/by-id/*CAN*-if00 can0
+# 如果上面命令不工作，可以尝试：
+# sudo slcand -o -c -s8 /dev/ttyACM0 can0
+
+# 启用 CAN 接口
+sudo ip link set can0 up
+```
+
 ### Launch the launch file for the demo
 - 在工作空间中运行如下命令: 
 ```shell

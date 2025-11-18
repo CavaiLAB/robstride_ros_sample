@@ -52,6 +52,6 @@ sudo ip link set can0 up
 - 在工作空间中运行如下命令: 
 ```shell
 colcon build 
-source ./install/setup.zsh (or bash)
+source ./install/setup.bash
 ros2 run rs_motor_ros2 rs_motor_ros2
 ```
